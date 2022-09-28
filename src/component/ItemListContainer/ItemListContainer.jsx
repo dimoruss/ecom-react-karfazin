@@ -2,9 +2,10 @@ import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import ItemList from "../ItemList/ItemList";
 import Title from "../Title/Title";
+import { collection, getDocs, getFirestore, query, where} from "firebase/firestore";
 
 
-const products = [
+/*const products = [
 	{
 		id: 1,
 		image:
@@ -45,24 +46,31 @@ const products = [
 		title: "Mando Xbox",
 		price: 300,
 	},
-];
+];*/
 
 export const ItemListContainer = ({ texto }) => {
 	const [data, setData] = useState([]);
 	const { categoriaId } = useParams();
 
 	useEffect(() => {
-		const getData = new Promise((resolve) => {
-			setTimeout(() => {
-				resolve(products);
-			}, 1000);
-		});
+		const querydb = getFirestore();
+		const queryCollection = collection(querydb, "items");
 		if (categoriaId) {
-			getData.then((res) =>
-				setData(res.filter((products) => products.category === categoriaId)),
+			const queryFilter = query(
+				queryCollection,
+				where("category", "==", categoriaId),
+			);
+			getDocs(queryFilter).then((res) =>
+				setData(
+					res.docs.map((product) => ({ id: product.id, ...product.data() })),
+				),
 			);
 		} else {
-			getData.then((res) => setData(res));
+			getDocs(queryCollection).then((res) =>
+				setData(
+					res.docs.map((product) => ({ id: product.id, ...product.data() })),
+				),
+			);
 		}
 	}, [categoriaId]);
 

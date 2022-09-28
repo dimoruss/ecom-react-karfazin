@@ -1,8 +1,9 @@
 import React, { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
 import ItemDetail from "../ItemDetail/ItemDetail";
+import { doc, getDoc, getFirestore} from "firebase/firestore";
 
-const products = [
+/*const products = [
 	{
 		id: 1,
 		image:
@@ -43,21 +44,16 @@ const products = [
 		title: "Mando Xbox",
 		price: 300,
 	},
-];
+];*/
 
 const ItemDetailContainer = () => {
 	const [data, setData] = useState({});
     const { detalleId } = useParams();
 
 	useEffect(() => {
-		const getData = new Promise((resolve) => {
-			setTimeout(() => {
-				resolve(products);
-			}, 1000);
-		});
-		getData.then((res) =>
-			setData(res.find((products) => products.id === parseInt(detalleId))),
-		);
+		const querydb = getFirestore();
+		const queryDoc = doc(querydb, "items", detalleId);
+		getDoc(queryDoc).then((res) => setData({ id: res.id, ...res.data() }));
 	}, [detalleId]);
 
 	return <ItemDetail data={data} />;
