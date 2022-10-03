@@ -45,6 +45,7 @@ const Cart = () => {
 				<ItemCart key={product.id} product={product} />
 			))}
 			<p>total: {totalPrice()}</p>
+			<button onClick={handleClick}>Emitir compra</button>
 		</>
 	);
 };
