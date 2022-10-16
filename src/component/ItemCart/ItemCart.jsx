@@ -15,7 +15,7 @@ const ItemCart = ({ product }) => {
                 <button onClick={() => removeProduct(product.id)}>Eliminar</button>
             </div>
         </div>
-    )
-}
+    );
+};
 
-export default ItemCart
+export default ItemCart;

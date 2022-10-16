@@ -34,3 +34,8 @@
         width: 50%;
     }
   }
+
+  .detail_title {
+    font-size: 3rem;
+    text-transform: uppercase;
+  }

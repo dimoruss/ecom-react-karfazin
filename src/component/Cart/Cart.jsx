@@ -9,12 +9,7 @@ const Cart = () => {
 	const { cart, totalPrice } = useCartContext();
 
 	const order = {
-		buyer: {
-			name: "Dimo Russ",
-			email: "dimoruss@gmail.com",
-			phone: "123123",
-			address: "asdd",
-		},
+		
 		items: cart.map((product) => ({
 			id: product.id,
 			title: product.title,
@@ -32,10 +27,10 @@ const Cart = () => {
 
 	if (cart.length === 0) {
 		return (
-			<>
+			<div className="text-center">
 				<p>No hay elementos en el carrito</p>
-				<Link to="/">Hacer compras</Link>
-			</>
+				<Link to="/"><button>Ir a tienda</button></Link>
+			</div>
 		);
 	}
 
@@ -45,7 +40,9 @@ const Cart = () => {
 				<ItemCart key={product.id} product={product} />
 			))}
 			<p>total: {totalPrice()}</p>
-			<button onClick={handleClick}>Emitir compra</button>
+			<Link to="/checkout">
+				<button onClick={handleClick}>Emitir compra</button>
+			</Link>
 		</>
 	);
 };
