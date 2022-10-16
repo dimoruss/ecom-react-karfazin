@@ -10,7 +10,7 @@ const Item = ({ info }) => {
 				<div className="">
 				
 				<Link to={`/detalle/${info.id}`}>
-					<img src={info.image} className="card-img-top" alt={info.title} />
+					<img src={info.image} className="card-img-top" width="150" height="300" alt={info.title} />
 				</Link>
 				<div className="card-body">
 					<h2 className="card-title text-center">
