@@ -1,3 +1,9 @@
+# Primer proyecto en REACT
+
+Primer proyecto realizado en REACT JS atravez de la plataforma CODERHOUSE, realizando basicamente un ecom de Juegos (generico por el momento) y accesorios. Con la interaccion de Firebase como almacenamiento de los productos.
+
+
+
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
